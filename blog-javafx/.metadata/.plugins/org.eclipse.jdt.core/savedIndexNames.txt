@@ -1,0 +1,14 @@
+INDEX VERSION 1.126+/home/william/workspaces-eclipse/blog-javafx/.metadata/.plugins/org.eclipse.jdt.core
+1917989069.index
+585639773.index
+3713717385.index
+2439888859.index
+3934730782.index
+248507992.index
+1753931839.index
+1949509457.index
+2857303109.index
+3768188723.index
+1017052801.index
+1112168906.index
+571586513.index
