@@ -13,3 +13,6 @@
 .settings
 .classpath
 .project
+/blog-javafx/post-13-tabelas/nbproject/private/
+/blog-javafx/post-13-tabelas/build/
+/blog-javafx/post-13-tabelas/dist/
