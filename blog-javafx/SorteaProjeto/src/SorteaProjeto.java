@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.SepiaTone;
@@ -41,7 +42,7 @@ public class SorteaProjeto extends Application {
 
     final String INICIAL = "#";
     // TODO: COlocar esse valor na view...
-    final int MAX = 3;
+    final int MAX = 7;
     // pode ser modificado para sortear qq outra coisa que não seja número...
     List<Object> paraSortear = geraListaNumericaSorteio(MAX);
     List<String> todasSorteadas = new ArrayList<>();
@@ -67,6 +68,7 @@ public class SorteaProjeto extends Application {
         BorderPane raiz = new BorderPane();
         Text txtSorteado = new Text();
         Text txtSorteadas = new Text();
+        TextField txtMax = new TextField();
         Text txtParaSortear = new Text(coletaParaSortear());
         Button btnComecar = new Button("VAI");
         Button btnParar = new Button("PARA");
@@ -79,8 +81,10 @@ public class SorteaProjeto extends Application {
         txtSorteado.textProperty().bind(textoSorteado);
         txtSorteado.setEffect(new InnerShadow(100, Color.BLACK));
         txtSorteado.setFill(Color.RED);
+        
+        txtMax.setPromptText("Número máximo para sortear");
 
-        caixaCima.getChildren().addAll(txtParaSortear, txtSorteadas);
+        caixaCima.getChildren().addAll(txtMax, txtParaSortear, txtSorteadas);
         caixaBaixo.getChildren().addAll(btnComecar, btnParar, btnLimpar);
         raiz.setTop(caixaCima);
         raiz.setCenter(txtSorteado);
@@ -140,7 +144,8 @@ public class SorteaProjeto extends Application {
             todasSorteadas.clear();
             txtSorteadas.setText("");
             textoSorteado.set(INICIAL);
-            paraSortear = geraListaNumericaSorteio(MAX);
+            int maxEntrado = Integer.parseInt(txtMax.getText());
+            paraSortear = geraListaNumericaSorteio(maxEntrado);
             listaVazia.set(paraSortear.isEmpty());
             txtParaSortear.setText(coletaParaSortear());
         });
