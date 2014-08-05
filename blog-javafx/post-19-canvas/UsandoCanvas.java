@@ -110,11 +110,11 @@ public class UsandoCanvas extends Application {
 		pnlControles.add(new Label("Espessura"), 0, 2);
 		pnlControles.add(sldEspessura, 1, 2);
 
-		pnlControles.add(new Label("Tipo de Pincel"), 0, 3);
-		pnlControles.add(pinceis, 1, 3);
+		pnlControles.add(new Label("Modo"), 0, 3);
+		pnlControles.add(modos, 1, 3);
 
-		pnlControles.add(new Label("Modo"), 0, 4);
-		pnlControles.add(modos, 1, 4);
+		pnlControles.add(new Label("Tipo de Pincel"), 0, 4);
+		pnlControles.add(pinceis, 1, 4);
 
 		pnlControles.add(new Label("Efeito"), 0, 5);
 		pnlControles.add(efeitos, 1, 5);
@@ -168,7 +168,7 @@ public class UsandoCanvas extends Application {
 			case RETANGULO:
 				ctx.strokeRect(x, y, v, v);
 				break;
-			case CIRCULO:				
+			case CIRCULO:
 				ctx.strokeOval(x, y, v, v);
 				break;
 			}
@@ -191,7 +191,17 @@ public class UsandoCanvas extends Application {
 		canvas.setOnMouseMoved(desenha);
 
 		txtTexto.disableProperty().bind(
-				modos.valueProperty().isEqualTo(Modo.PINCEL));
+				modos.valueProperty()
+					.isEqualTo(Modo.PINCEL)
+					.or(modos.valueProperty().isEqualTo(Modo.RETANGULO)
+					.or(modos.valueProperty().isEqualTo(Modo.CIRCULO)))
+				);
+		pinceis.disableProperty().bind(
+				modos.valueProperty()
+						.isEqualTo(Modo.TEXTO)
+						.or(modos.valueProperty().isEqualTo(Modo.RETANGULO)
+						.or(modos.valueProperty().isEqualTo(Modo.CIRCULO)))
+				);
 		corFundo.setOnAction(e -> limpa.accept(canvas.getGraphicsContext2D()));
 		limpa.accept(canvas.getGraphicsContext2D());
 		s.setScene(new Scene(new Pane(raiz)));
