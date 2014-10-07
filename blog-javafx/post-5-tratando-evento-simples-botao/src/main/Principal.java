@@ -23,20 +23,20 @@ public class Principal extends Application implements EventHandler<ActionEvent> 
 		raiz.setTranslateY(5);
 
 		Button botao1 = new Button("Clique em mim! (Tratador externo)");
-		Button botao2 = new Button("Clique em mim! (Class An鬾ima)");
-		Button botao3 = new Button("Clique em mim! (Pr髉ria classe)");
+		Button botao2 = new Button("Clique em mim! (Class An么nima)");
+		Button botao3 = new Button("Clique em mim! (Pr贸pria classe)");
 
 		// usamos a classe TratadorEvento para cuidar dos eventos
 		botao1.setOnAction(new TratadorEvento());
-		// Criando uma inst鈔cia de uma classe an鬾ima para tratar evento
+		// Criando uma inst芒ncia de uma classe an么nima para tratar evento
 		botao2.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent evento) {
-				System.out.println("Evento tratado por uma classe an鬾ima!");
+				System.out.println("Evento tratado por uma classe an么nima!");
 			}
 		});
-		// o bot鉶 3 usa essa pr髉ria classe para tratar seus eventos
+		// o bot茫o 3 usa essa pr贸pria classe para tratar seus eventos
 		botao3.setOnAction(this);
 
 		raiz.getChildren().addAll(botao1, botao2, botao3);
@@ -50,6 +50,6 @@ public class Principal extends Application implements EventHandler<ActionEvent> 
 
 	@Override
 	public void handle(ActionEvent evento) {
-		System.out.println("Evento tratado na pr髕ima classe!");
+		System.out.println("Evento tratado na pr贸pria classe!");
 	}
 }
