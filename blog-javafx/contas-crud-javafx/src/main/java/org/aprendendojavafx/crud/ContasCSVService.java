@@ -10,14 +10,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 
+ * Uma implementação do ContasService para lidar com arquivo CSV
+ * @author wsiqueir
+ *
+ */
 public class ContasCSVService implements ContasService {
 
+	// divisor de colunas no arquivo
 	private static final String SEPARADOR = ";";
 
+	// o caminho para o arquivo deve ser selecionado aqui
 	private static final Path ARQUIVO_SAIDA = Paths.get("./dados.csv");
 
+	// os dados do arquivo
 	private List<Conta> contas;
 
+	// formato de data usado no arquivo
 	final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
 	public ContasCSVService() {
@@ -58,6 +68,7 @@ public class ContasCSVService implements ContasService {
 				.orElseThrow(() -> new Error("Conta não encontrada"));
 	}
 
+	// salva a lista de dados no arquivo, gerando um novo CSV e escrevendo o arquivo completamente
 	private void salvaDados() {
 		StringBuffer sb = new StringBuffer();
 		for (Conta c : contas) {
@@ -74,10 +85,12 @@ public class ContasCSVService implements ContasService {
 		}
 	}
 	
+	// o ID mais alto é retornado aqui para continuarmos contando os IDs
 	private int ultimoId() {
 		return contas.stream().mapToInt(Conta::getId).max().orElse(0);
 	}
 
+	// carrega os dados do arquivo para a lista contas
 	private void carregaDados() {
 		try {
 			if(!Files.exists(ARQUIVO_SAIDA)) {
@@ -90,6 +103,7 @@ public class ContasCSVService implements ContasService {
 		}
 	}
 	
+	// transforma uma linha do CSV para o tipo Conta
 	private Conta leLinha(String linha) {
 		String colunas[] = linha.split(SEPARADOR);
 		int id = Integer.parseInt(colunas[0]);
@@ -107,6 +121,8 @@ public class ContasCSVService implements ContasService {
 		conta.setDataVencimento(dataVencimento);
 		return conta;
 	}
+	
+	// transforma um objeto conta em um arquivo CSV
 	private String criaLinha(Conta c) {
 		String dataStr = formatoData.format(c.getDataVencimento());
 		String idStr = String.valueOf(c.getId());

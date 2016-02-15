@@ -2,6 +2,12 @@ package org.aprendendojavafx.crud;
 
 import java.util.Date;
 
+/**
+ * 
+ * Nossa classe de modelo do objeto que "sofrerá" as operações de CRUD
+ * @author wsiqueir
+ *
+ */
 public class Conta {
 
 	private int id;
@@ -9,6 +15,7 @@ public class Conta {
 	private String descricao;
 	private Date dataVencimento;
 
+	// gets e sets
 	public int getId() {
 		return id;
 	}
