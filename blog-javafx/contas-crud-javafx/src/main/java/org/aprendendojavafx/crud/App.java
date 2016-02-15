@@ -18,6 +18,7 @@ public class App extends Application {
 	public void start(Stage stage) throws Exception {
 		URL fxml = getClass().getResource("./contas.fxml");
 		Parent parent = FXMLLoader.load(fxml);
+		stage.setTitle("Contas a pagar!");
 		stage.setScene(new Scene(parent));
 		stage.show();
 	}
