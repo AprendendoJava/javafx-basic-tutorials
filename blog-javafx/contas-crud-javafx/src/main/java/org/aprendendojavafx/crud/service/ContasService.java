@@ -1,6 +1,8 @@
-package org.aprendendojavafx.crud;
+package org.aprendendojavafx.crud.service;
 
 import java.util.List;
+
+import org.aprendendojavafx.crud.model.Conta;
 
 /**
  * 

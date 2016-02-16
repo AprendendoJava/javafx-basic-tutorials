@@ -1,4 +1,4 @@
-package org.aprendendojavafx.crud;
+package org.aprendendojavafx.crud.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import org.aprendendojavafx.crud.model.Conta;
+import org.aprendendojavafx.crud.service.ContasService;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
