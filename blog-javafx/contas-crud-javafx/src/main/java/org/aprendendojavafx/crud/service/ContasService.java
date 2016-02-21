@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aprendendojavafx.crud.model.Conta;
 import org.aprendendojavafx.crud.service.impl.ContasCSVService;
+import org.aprendendojavafx.crud.service.impl.ContasDBService;
 
 /**
  * 
@@ -32,7 +33,8 @@ public interface ContasService {
 	// retorna a implementação que escolhemos - no nosso caso o ContasCSVService, 
 	// mas poderia ser outro, como ContasDBService...
 	public static ContasService getNewInstance() {
-		return new ContasCSVService();
+		// return new ContasCSVService();
+		return new ContasDBService();
 	}
 
 }
