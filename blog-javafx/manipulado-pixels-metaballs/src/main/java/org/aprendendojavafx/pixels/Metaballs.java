@@ -5,42 +5,24 @@ import static java.lang.Math.sqrt;
 
 import java.util.Random;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
-public class Main extends Application {
-
-	public static final float WIDTH = 600;
-	public static final float HEIGHT = 400;
+public class Metaballs extends DrawingApp {
 
 	int COLOR_MODES = 7;
-
-	public static Random random = new Random();
+	Random random = new Random();
 	Blob[] blobs = new Blob[12];
-
+	int selectedColorMode = 1;
+	boolean inverter = false;
+	
 	public static void main(String[] args) {
 		launch();
 	}
 
-	int selectedColorMode = 1;
-	boolean inverter = false;
-
-	private Canvas canvas;
-
 	@Override
-	public void start(Stage stage) throws Exception {
-		canvas = new Canvas(WIDTH, HEIGHT);
-
+	void setup() {
 		for (int i = 0; i < blobs.length; i++) {
-			blobs[i] = new Blob(random.nextFloat() * WIDTH, random.nextFloat() * HEIGHT);
+			blobs[i] = new Blob(random.nextFloat() * width, random.nextFloat() * height);
 		}
 
 		canvas.setOnMouseClicked(e -> {
@@ -51,21 +33,18 @@ public class Main extends Application {
 			else
 				selectedColorMode++;
 		});
+		title = "Metaballs with JavaFX";
+		
+		width =  600;
+		height = 400;
 
-		stage.setTitle("MetaBalls example with JavaFX");
-		stage.show();
-		stage.setScene(new Scene(new StackPane(canvas), WIDTH, HEIGHT));
-		KeyFrame frame = new KeyFrame(Duration.millis(100), e -> draw());
-		Timeline timeline = new Timeline(frame);
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
 	}
 
-	private void draw() {
-		GraphicsContext ctx = canvas.getGraphicsContext2D();
-		ctx.clearRect(0, 0, WIDTH, HEIGHT);
-		for (int x = 0; x < WIDTH; x++) {
-			for (int y = 0; y < HEIGHT; y++) {
+	@Override
+	void draw() {
+		ctx.clearRect(0, 0, width, height);
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				int total = 0;
 				for (Blob blob : blobs) {
 					double d = distance(x, y, blob.posX, blob.posY);
@@ -81,8 +60,13 @@ public class Main extends Application {
 		for (int i = 0; i < blobs.length; i++) {
 			blobs[i].update();
 		}
-	}
 
+	}
+	
+	private double distance(double x, double y, double x2, double y2) {
+		return sqrt(pow(x2 - x, 2) + pow(y2 - y, 2));
+	}
+	
 	private Color selectColor(int total) {
 		int inverso = 255;
 		if (inverter) {
@@ -112,10 +96,6 @@ public class Main extends Application {
 			color = Color.rgb(inverso, inverso, total);
 		}
 		return color;
-	}
-
-	private double distance(double x, double y, double x2, double y2) {
-		return sqrt(pow(x2 - x, 2) + pow(y2 - y, 2));
 	}
 
 }
