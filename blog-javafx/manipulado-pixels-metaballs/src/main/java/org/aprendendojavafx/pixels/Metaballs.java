@@ -3,14 +3,11 @@ package org.aprendendojavafx.pixels;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-import java.util.Random;
-
 import javafx.scene.paint.Color;
 
 public class Metaballs extends DrawingApp {
 
 	int COLOR_MODES = 7;
-	Random random = new Random();
 	Blob[] blobs = new Blob[12];
 	int selectedColorMode = 1;
 	boolean inverter = false;

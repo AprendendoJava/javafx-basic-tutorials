@@ -1,5 +1,7 @@
 package org.aprendendojavafx.pixels;
 
+import java.util.Random;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -12,11 +14,13 @@ import javafx.util.Duration;
 
 public abstract class DrawingApp extends Application {
 
-	public int frames = 100;
+	public int frames = 10;
 	public String title = "My App";
 	
 	public static float width = 600;
 	public static float height = 400;
+	
+	public static Random random = new Random();
 
 	Canvas canvas = new Canvas();
 	GraphicsContext ctx = canvas.getGraphicsContext2D();
@@ -31,7 +35,7 @@ public abstract class DrawingApp extends Application {
 		stage.setScene(new Scene(raiz, width, height));
 		stage.show();
 
-		KeyFrame frame = new KeyFrame(Duration.millis(frames), e -> draw());
+		KeyFrame frame = new KeyFrame(Duration.millis(1000 / frames), e -> draw());
 		Timeline timeline = new Timeline(frame);
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();

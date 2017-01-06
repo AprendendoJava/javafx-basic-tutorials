@@ -1,10 +1,6 @@
 package org.aprendendojavafx.pixels;
 
-import java.util.Random;
-
 class Blob {
-	
-	Random random = new Random();
 	
 	double posX, posY;
 	double velX, velY;
@@ -15,19 +11,19 @@ class Blob {
 		this.posX = x;
 		this.posY = y;
 		this.raio = 200;
-		velX = random.nextFloat() * 10;
-		velY = random.nextFloat() * 10;
+		velX = Metaballs.random.nextFloat() * 10;
+		velY = Metaballs.random.nextFloat() * 10;
 		
 	}
 	
 	public void update() {
 		posX += velX;
 		posY += velY;
-		if(posX < 0 || posX > DrawingApp.height) {
+		if(posX < 0 || posX > Metaballs.width) {
 			velX *= -1;
 		}
 		
-		if(posY < 0 || posY > DrawingApp.height) {
+		if(posY < 0 || posY > Metaballs.height) {
 			velY *= -1;
 		}
 	}
