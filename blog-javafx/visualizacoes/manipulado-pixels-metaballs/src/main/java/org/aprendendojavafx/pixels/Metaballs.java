@@ -1,8 +1,8 @@
 package org.aprendendojavafx.pixels;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+import org.fxapps.drawingfx.DrawingApp;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class Metaballs extends DrawingApp {
@@ -11,34 +11,34 @@ public class Metaballs extends DrawingApp {
 	Blob[] blobs = new Blob[12];
 	int selectedColorMode = 1;
 	boolean inverter = false;
-	
+
 	public static void main(String[] args) {
 		launch();
 	}
 
-	@Override
-	void setup() {
+	public void setup() {
 		for (int i = 0; i < blobs.length; i++) {
 			blobs[i] = new Blob(random.nextFloat() * width, random.nextFloat() * height);
 		}
 
-		canvas.setOnMouseClicked(e -> {
-			if (e.isControlDown())
-				inverter = !inverter;
-			else if (selectedColorMode > COLOR_MODES)
-				selectedColorMode = 1;
-			else
-				selectedColorMode++;
-		});
 		title = "Metaballs with JavaFX";
-		
-		width =  600;
+
+		width = 600;
 		height = 400;
 
 	}
 
 	@Override
-	void draw() {
+	public void mouseCliked(MouseEvent e) {
+		if (e.isControlDown())
+			inverter = !inverter;
+		else if (selectedColorMode > COLOR_MODES)
+			selectedColorMode = 1;
+		else
+			selectedColorMode++;
+	}
+
+	public void draw() {
 		ctx.clearRect(0, 0, width, height);
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -59,11 +59,7 @@ public class Metaballs extends DrawingApp {
 		}
 
 	}
-	
-	private double distance(double x, double y, double x2, double y2) {
-		return sqrt(pow(x2 - x, 2) + pow(y2 - y, 2));
-	}
-	
+
 	private Color selectColor(int total) {
 		int inverso = 255;
 		if (inverter) {
