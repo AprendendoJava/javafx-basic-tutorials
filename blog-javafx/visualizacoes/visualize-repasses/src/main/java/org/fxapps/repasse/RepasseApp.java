@@ -21,11 +21,13 @@ import org.fxapps.repasse.model.Municipio;
 import org.fxapps.repasse.model.TipoAgregacao;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.HBox;
@@ -156,7 +158,7 @@ public class RepasseApp extends DrawingApp {
 	private void createControls() {
 		cmbStates = new ComboBox<String>(FXCollections.observableArrayList(STATES));
 		cmbAggregation = new ComboBox<>(FXCollections.observableArrayList(TipoAgregacao.values()));
-		tgPause = new ToggleButton("Pausar no ano atual");
+		tgPause = new ToggleButton("Pausar");
 		cmbCities = new ComboBox<>();
 		chkShowEvolution = new CheckBox("Evolução dos Repasses");
 		chkShowEvolution.setSelected(true);
@@ -165,7 +167,7 @@ public class RepasseApp extends DrawingApp {
 		Button btnLoad = new Button("Carregar");
 
 		HBox hbControls = new HBox(20,  new Label("Estado"), cmbStates,
-				new Label("Município"), cmbCities, new Label("Mostrar por"), cmbAggregation, chkPerCapita, btnLoad, chkShowEvolution, tgPause);
+				new Label("Município"), cmbCities, new Label("Mostrar por"), cmbAggregation, chkPerCapita, btnLoad,  new Separator(Orientation.VERTICAL), chkShowEvolution, tgPause);
 		hbControls.setAlignment(Pos.CENTER);
 
 		cmbCities.setMaxWidth(150);

@@ -2,7 +2,7 @@ package org.fxapps.repasse.model;
 
 public enum TipoAgregacao {
 
-	AREA("Área", "AREA"), SUB_FUNCAO("Sub Função", "SUB_FUNCAO"), ACAO("Ação", "ACAO"), PROGRAMA("Programa", "PROGRAMA"), FAVORECIDO("Favorecido", "FAVORECIDO");
+	AREA("Área", "AREA"), SUB_FUNCAO("Sub Função", "SUB_FUNCAO"), PROGRAMA("Programa", "PROGRAMA");
 
 	private String nome;
 	private String chave;
