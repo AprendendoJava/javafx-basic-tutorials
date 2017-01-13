@@ -45,11 +45,10 @@ public class RepasseApp extends DrawingApp {
 			"PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" };
 
 	final String[] YEARS = { "2011", "2012", "2013", "2014", "2015", "2016" };
-//	final String[] YEARS = { "2011", "2012" };
-
 
 	final String CITIES_URL = "http://repasse.ufabc.edu.br/rest/estado/%s/municipios";
 	final String PER_CAPITA_AGGREGATION_URL = "http://repasse.ufabc.edu.br/rest/agregacao/percapita/%s/%s/municipio/%s";
+	final String TOTAL_AGGREGATION_URL = "http://repasse.ufabc.edu.br/rest/agregacao/%s/%s/municipio/%s";
 
 	static private NumberFormat nfPtBr = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
 
@@ -58,6 +57,7 @@ public class RepasseApp extends DrawingApp {
 	private ComboBox<TipoAgregacao> cmbAggregation;
 	private ToggleButton tgPause;
 	private CheckBox chkShowEvolution;
+	private CheckBox chkPerCapita;
 	Jsonb jsonb = JsonbBuilder.create();
 
 
@@ -98,7 +98,6 @@ public class RepasseApp extends DrawingApp {
 		valueBallForItem = new HashMap<>();
 		currentValueBalls = new ArrayList<>();
 		currentAggreationIndex = 0;
-		
 	}
 
 	public void draw() {
@@ -118,7 +117,8 @@ public class RepasseApp extends DrawingApp {
 			// draw the larger first
 			ctx.setFont(Font.font(null, FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 25));
 			ctx.setFill(Color.DARKBLUE);
-			ctx.fillText("Repasses (per capita) em " + allAggregations.get(currentAggreationIndex).getAno() + " foram de " + toBrMoney(currentTotal), width / 2, 40);
+			String perCapitaOrTotal = chkPerCapita.isSelected()? "per capita":  "totais";
+			ctx.fillText("Repasses ("+perCapitaOrTotal +") em " + allAggregations.get(currentAggreationIndex).getAno() + " foram de " + toBrMoney(currentTotal), width / 2, 40);
 			int yearSpot = width / (allAggregations.size());
 			for (Agregacao a : allAggregations) {
 				int i = allAggregations.indexOf(a);
@@ -160,10 +160,12 @@ public class RepasseApp extends DrawingApp {
 		cmbCities = new ComboBox<>();
 		chkShowEvolution = new CheckBox("Evolução dos Repasses");
 		chkShowEvolution.setSelected(true);
+		chkPerCapita = new CheckBox("Por pessoa");
+		chkPerCapita.setSelected(true);
 		Button btnLoad = new Button("Carregar");
 
 		HBox hbControls = new HBox(20,  new Label("Estado"), cmbStates,
-				new Label("Município"), cmbCities, new Label("Mostrar por"), cmbAggregation, btnLoad, chkShowEvolution, tgPause);
+				new Label("Município"), cmbCities, new Label("Mostrar por"), cmbAggregation, chkPerCapita, btnLoad, chkShowEvolution, tgPause);
 		hbControls.setAlignment(Pos.CENTER);
 
 		cmbCities.setMaxWidth(150);
@@ -197,8 +199,12 @@ public class RepasseApp extends DrawingApp {
 		TipoAgregacao a = cmbAggregation.getSelectionModel().getSelectedItem();
 		try {
 			for(String year : YEARS) {
-				String aggrUrl = String.format(PER_CAPITA_AGGREGATION_URL, a.getChave(), year, id);
-				URLConnection conn = new URL(aggrUrl).openConnection();
+				String targetUrl = TOTAL_AGGREGATION_URL;
+				if(chkPerCapita.isSelected()) {	
+					targetUrl = PER_CAPITA_AGGREGATION_URL;
+				}
+				targetUrl = String.format(targetUrl, a.getChave(), year, id);
+				URLConnection conn = new URL(targetUrl).openConnection();
 				Agregacao aggregation = jsonb.fromJson(conn.getInputStream(), Agregacao.class);
 				addAggregation(aggregation);
 			}
