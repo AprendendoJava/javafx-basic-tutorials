@@ -18,7 +18,7 @@ public class Metaballs extends DrawingApp {
 
 	public void setup() {
 		for (int i = 0; i < blobs.length; i++) {
-			blobs[i] = new Blob(random.nextFloat() * width, random.nextFloat() * height);
+			blobs[i] = new Blob(random.nextFloat() * width, random.nextFloat() * height, this);
 		}
 
 		title = "Metaballs with JavaFX";
