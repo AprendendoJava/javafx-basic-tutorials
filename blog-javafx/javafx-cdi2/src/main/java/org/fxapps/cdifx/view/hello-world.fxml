@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="88.0" prefWidth="306.0" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxapps.cdifx.view.FXController">
+  <children>
+    <TextField layoutX="14.0" layoutY="14.0" prefWidth="200.0" fx:id="txtName" />
+    <Button layoutX="226.0" layoutY="15.0" mnemonicParsing="false" onAction="#updateMessage" text="Click!" />
+    <Label fx:id="lblMessage" layoutX="14.0" layoutY="44.0" prefHeight="21.0" prefWidth="264.0" text="Type your name and click!">
+      <effect>
+        <Reflection fraction="0.9" />
+      </effect>
+    </Label>
+  </children>
+</AnchorPane>
