@@ -1,0 +1,2 @@
+org.fxapps.fx.cdi.beanvalidation.conf.valuextractors.TextFieldValueExtractor
+org.fxapps.fx.cdi.beanvalidation.conf.valuextractors.DatePickerValueExtractor
