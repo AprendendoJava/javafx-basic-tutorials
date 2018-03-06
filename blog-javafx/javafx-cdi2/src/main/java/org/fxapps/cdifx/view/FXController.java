@@ -3,6 +3,7 @@ package org.fxapps.cdifx.view;
 import javax.inject.Inject;
 
 import org.fxapps.cdifx.service.Greeter;
+import org.fxapps.cdifx.service.Message;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class FXController {
 	@FXML
 	TextField txtName;
 
-	@Inject
+	@Inject @Message
 	Greeter greeter;
 
 	public void updateMessage() {

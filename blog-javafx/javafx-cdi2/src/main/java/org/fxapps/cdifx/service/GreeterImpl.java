@@ -1,8 +1,6 @@
 package org.fxapps.cdifx.service;
 
-import javax.enterprise.inject.Default;
 
-@Default
 public class GreeterImpl implements Greeter {
 
 	@Override
