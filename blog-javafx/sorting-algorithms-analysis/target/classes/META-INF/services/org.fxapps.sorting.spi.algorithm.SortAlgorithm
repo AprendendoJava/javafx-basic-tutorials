@@ -1,8 +1,0 @@
-org.fxapps.sorting.spi.algorithm.impl.BubbleSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.InsertionSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.SelectionSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.HeapSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.ShellSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.BuiltinQuickSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.BuiltinParallelMergeSortAlgorithm
-org.fxapps.sorting.spi.algorithm.impl.ClassicalQuickSortAlgorithm
