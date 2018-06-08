@@ -28,7 +28,6 @@ public class AircraftWar extends Application {
 	private static final int PLAYER_SIZE = 60;
 	
 	static final Image PLAYER_IMG = new Image("/images/player.png"); 
-	static final Image BACKGROUND = new Image("/images/background.png");
 	
 	static final Image EXPLOSION_IMG = new Image("/images/explosion_sprite.png");
 	static final int EXPLOSION_W = 128;
